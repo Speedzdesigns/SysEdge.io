@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SysEdge.io – IT Insights for Pros & SMBs</title>
+<meta name="description" content="Real-world IT advice, tool reviews, and security guides for IT professionals and small business owners. Written by a 10+ year IT veteran.">
+<meta name="keywords" content="IT blog, cybersecurity, MSP tools, network security, CMMC compliance, sysadmin, IT Arkansas">
+<meta property="og:title" content="SysEdge.io – IT Insights for Pros & SMBs">
+<meta property="og:description" content="Real-world IT advice from a 10+ year veteran. Tool reviews, security guides, and MSP tips that actually work.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0B1628;
+    --navy-mid: #132040;
+    --navy-light: #1E3260;
+    --accent: #00C2FF;
+    --accent-dim: #0099CC;
+    --accent-glow: rgba(0,194,255,0.12);
+    --text-primary: #F0F4FF;
+    --text-secondary: #94A3C0;
+    --text-muted: #5A6A8A;
+    --border: rgba(0,194,255,0.15);
+    --border-subtle: rgba(255,255,255,0.06);
+    --card-bg: rgba(19,32,64,0.7);
+    --success: #00E5A0;
+    --warning: #FFB347;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(11,22,40,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: var(--navy) !important;
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    transition: opacity 0.2s !important;
+  }
+
+  .nav-cta:hover { opacity: 0.85; color: var(--navy) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 5rem 2rem 4rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent-glow);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 4px 14px;
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.8;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--navy);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 12px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 12px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 1px solid var(--border-subtle);
+    transition: border-color 0.2s, background 0.2s;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--border);
+    background: var(--accent-glow);
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding: 2rem;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    flex-wrap: wrap;
+  }
+
+  .stat { text-align: center; }
+
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ── SECTION LAYOUTS ── */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+  }
+
+  .section-sub {
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.25s, transform 0.25s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .card:hover {
+    border-color: var(--border);
+    transform: translateY(-3px);
+  }
+
+  /* ── FEATURED POST ── */
+  .featured-post {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .featured-post::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), #0066FF);
+  }
+
+  .post-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+
+  .tag-security { background: rgba(0,194,255,0.15); color: var(--accent); }
+  .tag-tools { background: rgba(0,229,160,0.12); color: var(--success); }
+  .tag-compliance { background: rgba(255,179,71,0.12); color: var(--warning); }
+  .tag-networking { background: rgba(130,100,255,0.12); color: #A080FF; }
+  .tag-msp { background: rgba(255,80,120,0.12); color: #FF7AA0; }
+
+  .post-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+  }
+
+  .post-excerpt {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .post-read-more {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap 0.2s;
+  }
+
+  .post-read-more:hover { gap: 8px; }
+
+  /* ── POST GRID ── */
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .post-card { cursor: pointer; }
+
+  .post-card .post-title { font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .post-card .post-excerpt { font-size: 0.88rem; margin-bottom: 1rem; }
+
+  /* ── TOOL REVIEWS ── */
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .tool-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.25s;
+  }
+
+  .tool-card:hover { border-color: var(--border); }
+
+  .tool-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+
+  .tool-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+
+  .tool-rating {
+    font-size: 0.85rem;
+    color: var(--warning);
+    font-weight: 600;
+  }
+
+  .tool-desc {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .tool-verdict {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  .verdict-best { background: rgba(0,229,160,0.12); color: var(--success); }
+  .verdict-good { background: rgba(0,194,255,0.12); color: var(--accent); }
+  .verdict-skip { background: rgba(255,80,80,0.12); color: #FF6060; }
+
+  .tool-affiliate-link {
+    display: block;
+    text-align: center;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .tool-affiliate-link:hover {
+    background: var(--accent-glow);
+  }
+
+  /* ── NEWSLETTER ── */
+  .newsletter-section {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .newsletter-section::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: var(--accent-glow);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .newsletter-section h2 {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .newsletter-section p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0.75rem;
+    max-width: 420px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .newsletter-form input {
+    flex: 1;
+    min-width: 200px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 11px 16px;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-family: var(--font-body);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .newsletter-form input::placeholder { color: var(--text-muted); }
+  .newsletter-form input:focus { border-color: var(--accent); }
+
+  .newsletter-form button {
+    background: var(--accent);
+    color: var(--navy);
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 11px 22px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: opacity 0.2s;
+  }
+
+  .newsletter-form button:hover { opacity: 0.85; }
+
+  .newsletter-note {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.75rem;
+  }
+
+  /* ── ABOUT STRIP ── */
+  .about-strip {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+    padding: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .about-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #0066FF);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--navy);
+    flex-shrink: 0;
+  }
+
+  .about-text h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .about-text p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .about-creds {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-top: 0.75rem;
+  }
+
+  .cred-pill {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 3px 10px;
+    border-radius: 100px;
+    background: rgba(0,194,255,0.1);
+    border: 1px solid var(--border);
+    color: var(--accent);
+  }
+
+  /* ── CATEGORIES ── */
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+
+  .category-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, background 0.2s;
+    display: block;
+  }
+
+  .category-card:hover {
+    border-color: var(--border);
+    background: var(--accent-glow);
+  }
+
+  .category-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .category-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .category-count {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border-subtle);
+    padding: 3rem 2rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .footer-brand p {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    margin-top: 0.75rem;
+    line-height: 1.7;
+    max-width: 280px;
+  }
+
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  .footer-logo span { color: var(--accent); }
+
+  .footer-col h4 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .footer-col ul { list-style: none; }
+
+  .footer-col li { margin-bottom: 0.5rem; }
+
+  .footer-col a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: color 0.2s;
+  }
+
+  .footer-col a:hover { color: var(--accent); }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .footer-bottom a { color: var(--text-muted); text-decoration: none; }
+  .footer-bottom a:hover { color: var(--accent); }
+
+  .affiliate-disclosure {
+    background: rgba(255,179,71,0.07);
+    border: 1px solid rgba(255,179,71,0.2);
+    border-radius: 8px;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .affiliate-disclosure strong { color: var(--warning); }
+
+  /* ── ARTICLE PAGE ── */
+  .article-content { display: none; }
+
+  .article-content.active { display: block; }
+
+  .home-content { display: block; }
+  .home-content.hidden { display: none; }
+
+  .article-header {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3rem 2rem 2rem;
+  }
+
+  .back-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 2rem;
+    cursor: pointer;
+  }
+
+  .article-body {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+  }
+
+  .article-body h2 {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin: 2rem 0 0.75rem;
+    color: var(--text-primary);
+  }
+
+  .article-body h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.5rem;
+    color: var(--text-secondary);
+  }
+
+  .article-body p { margin-bottom: 1.1rem; color: var(--text-secondary); font-size: 0.97rem; line-height: 1.8; }
+
+  .article-body ul, .article-body ol {
+    margin: 0.75rem 0 1.1rem 1.5rem;
+    color: var(--text-secondary);
+    font-size: 0.97rem;
+    line-height: 1.8;
+  }
+
+  .article-body li { margin-bottom: 0.4rem; }
+
+  .article-body strong { color: var(--text-primary); font-weight: 600; }
+
+  .article-body .callout {
+    background: var(--accent-glow);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    font-size: 0.92rem;
+    color: var(--text-primary);
+  }
+
+  .article-body .affiliate-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .affiliate-box-text { flex: 1; min-width: 180px; }
+  .affiliate-box-text strong { display: block; font-size: 0.95rem; color: var(--text-primary); margin-bottom: 3px; }
+  .affiliate-box-text span { font-size: 0.82rem; color: var(--text-muted); }
+
+  .affiliate-box-btn {
+    background: var(--accent);
+    color: var(--navy);
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 9px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+  }
+
+  .affiliate-box-btn:hover { opacity: 0.85; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .hero { padding: 3rem 1rem 2.5rem; }
+    .stats-bar { gap: 1.5rem; }
+    .section { padding: 2.5rem 1rem; }
+    .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .newsletter-section { padding: 2rem 1.25rem; }
+    .about-strip { flex-direction: column; gap: 1rem; }
+    .featured-post { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo" onclick="showHome()">Sys<span>Edge</span>.io</a>
+  <ul class="nav-links">
+    <li><a href="#articles" onclick="showHome()">Articles</a></li>
+    <li><a href="#tools">Tool Reviews</a></li>
+    <li><a href="#categories">Topics</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#newsletter" class="nav-cta">Free Newsletter</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════════════ HOME ═══════════════════════════════════════ -->
+<div class="home-content" id="home-content">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">Written by a 10-year IT veteran</div>
+    <h1>IT advice that actually<br><em>works in the real world</em></h1>
+    <p>Tool reviews, security guides, MSP tips, and compliance breakdowns for IT professionals and small business owners who don't have time for fluff.</p>
+    <div class="hero-actions">
+      <a href="#articles" class="btn-primary">Read Latest Articles</a>
+      <a href="#newsletter" class="btn-secondary">Get the Newsletter</a>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat">
+      <span class="stat-number">10+</span>
+      <span class="stat-label">Years in IT</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">48hr</span>
+      <span class="stat-label">Ransomware Recovery</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">95%</span>
+      <span class="stat-label">SLA Compliance</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">50+</span>
+      <span class="stat-label">Sites Managed</span>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <section class="section" id="categories">
+    <div class="section-header">
+      <span class="section-label">Browse by Topic</span>
+      <h2 class="section-title">Find what you need</h2>
+    </div>
+    <div class="category-grid">
+      <a href="#articles" class="category-card">
+        <span class="category-icon">🔒</span>
+        <div class="category-name">Cybersecurity</div>
+        <div class="category-count">12 articles</div>
+      </a>
+      <a href="#tools" class="category-card">
+        <span class="category-icon">🛠️</span>
+        <div class="category-name">Tool Reviews</div>
+        <div class="category-count">8 reviews</div>
+      </a>
+      <a href="#articles" class="category-card">
+        <span class="category-icon">🌐</span>
+        <div class="category-name">Networking</div>
+        <div class="category-count">7 articles</div>
+      </a>
+      <a href="#articles" class="category-card">
+        <span class="category-icon">📋</span>
+        <div class="category-name">Compliance</div>
+        <div class="category-count">5 articles</div>
+      </a>
+      <a href="#articles" class="category-card">
+        <span class="category-icon">💼</span>
+        <div class="category-name">MSP Tips</div>
+        <div class="category-count">9 articles</div>
+      </a>
+      <a href="#articles" class="category-card">
+        <span class="category-icon">🏠</span>
+        <div class="category-name">Home Lab</div>
+        <div class="category-count">6 articles</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- FEATURED + ARTICLES -->
+  <section class="section" id="articles">
+    <div class="section-header">
+      <span class="section-label">Featured</span>
+      <h2 class="section-title">Latest Articles</h2>
+      <p class="section-sub">Real-world IT experience, no sponsored fluff.</p>
+    </div>
+
+    <!-- FEATURED POST -->
+    <div class="featured-post">
+      <span class="post-tag tag-security">Cybersecurity</span>
+      <div class="post-title">How We Recovered From Ransomware in 48 Hours — Without Paying the Ransom</div>
+      <div class="post-excerpt">A ransomware attack hit on a Tuesday afternoon. By Thursday morning, we were fully operational. Here's the exact playbook we used: what failed, what saved us, and the $40/month tool that made the difference between a bad week and a catastrophic one.</div>
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+        <div class="post-meta">
+          <span>Jason Taylor</span>
+          <span>•</span>
+          <span>June 2025</span>
+          <span>•</span>
+          <span>12 min read</span>
+        </div>
+        <a href="#" class="post-read-more" onclick="showArticle('ransomware')">Read full article →</a>
+      </div>
+    </div>
+
+    <!-- POST GRID -->
+    <div class="post-grid">
+      <div class="card post-card" onclick="showArticle('cmmc')">
+        <span class="post-tag tag-compliance">Compliance</span>
+        <div class="post-title">CMMC 2.0 for Small IT Teams: What You Actually Need to Do</div>
+        <div class="post-excerpt">Most CMMC guides were written for consultants, not practitioners. Here's what Level 1 and Level 2 actually require from your team — in plain English.</div>
+        <div class="post-meta"><span>May 2025</span><span>•</span><span>9 min read</span></div>
+      </div>
+
+      <div class="card post-card" onclick="showArticle('rmm')">
+        <span class="post-tag tag-tools">Tool Review</span>
+        <div class="post-title">NinjaRMM vs. ConnectWise Automate: An MSP's Honest Take After Using Both</div>
+        <div class="post-excerpt">I've run both platforms across multi-site deployments. Here's where each one actually wins — and the deal-breakers nobody mentions in the marketing.</div>
+        <div class="post-meta"><span>April 2025</span><span>•</span><span>11 min read</span></div>
+      </div>
+
+      <div class="card post-card" onclick="showArticle('homelab')">
+        <span class="post-tag tag-networking">Networking</span>
+        <div class="post-title">Build a Home Lab for Under $300: The Setup Every IT Pro Should Have</div>
+        <div class="post-excerpt">You don't need a server room. With $300 and a weekend, you can build a lab that mirrors production environments and actually helps you learn faster.</div>
+        <div class="post-meta"><span>March 2025</span><span>•</span><span>14 min read</span></div>
+      </div>
+
+      <div class="card post-card" onclick="showArticle('mfa')">
+        <span class="post-tag tag-security">Cybersecurity</span>
+        <div class="post-title">MFA Is Not Enough: Why SMS-Based Two-Factor Is Getting Your Clients Hacked</div>
+        <div class="post-excerpt">SIM-swapping attacks are up 400%. If you're still setting up SMS MFA for SMB clients, you're one phone call away from a breach. Here's what to use instead.</div>
+        <div class="post-meta"><span>March 2025</span><span>•</span><span>7 min read</span></div>
+      </div>
+
+      <div class="card post-card" onclick="showArticle('backup')">
+        <span class="post-tag tag-msp">MSP Tips</span>
+        <div class="post-title">The 3-2-1-1 Backup Rule: Why Your Clients' Current Backup Strategy Will Fail</div>
+        <div class="post-excerpt">Most SMBs think they have backups. Most of them are wrong. This guide walks through what a real backup strategy looks like and what products actually deliver it.</div>
+        <div class="post-meta"><span>February 2025</span><span>•</span><span>8 min read</span></div>
+      </div>
+
+      <div class="card post-card" onclick="showArticle('unifi')">
+        <span class="post-tag tag-networking">Networking</span>
+        <div class="post-title">Ubiquiti UniFi for SMBs: A Realistic Setup Guide (With the Gotchas)</div>
+        <div class="post-excerpt">UniFi is excellent — when set up correctly. Here's a practical guide to deploying it for a 10–100 user SMB, including VLANs, guest networks, and common mistakes to avoid.</div>
+        <div class="post-meta"><span>January 2025</span><span>•</span><span>16 min read</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOL REVIEWS -->
+  <section class="section" id="tools">
+    <div class="section-header">
+      <span class="section-label">Affiliate Reviews</span>
+      <h2 class="section-title">Tools I Actually Use</h2>
+      <p class="section-sub">Every tool reviewed hands-on. Affiliate links help keep this site free.</p>
+    </div>
+
+    <div class="affiliate-disclosure">
+      <strong>Disclosure:</strong> Some links on this page are affiliate links. If you purchase through them, I may earn a commission at no extra cost to you. I only recommend tools I've personally used or tested.
+    </div>
+
+    <div class="tool-grid">
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-name">NinjaRMM</div>
+          <div class="tool-rating">★★★★★ 4.8</div>
+        </div>
+        <span class="tool-verdict verdict-best">Best for MSPs</span>
+        <div class="tool-desc">The cleanest RMM I've used after 10 years of MSP work. Fast deployment, solid patch management, and actually helpful support. Pricing is transparent unlike some competitors.</div>
+        <a href="https://www.ninjaone.com" target="_blank" rel="noopener" class="tool-affiliate-link">Get NinjaRMM → (affiliate)</a>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-name">Veeam Backup</div>
+          <div class="tool-rating">★★★★★ 4.7</div>
+        </div>
+        <span class="tool-verdict verdict-best">Best Backup Tool</span>
+        <div class="tool-desc">The gold standard for VM backup. The free Community Edition alone is better than most paid competitors. If you're protecting VMs without Veeam, you're taking unnecessary risk.</div>
+        <a href="https://www.veeam.com" target="_blank" rel="noopener" class="tool-affiliate-link">Try Veeam Free → (affiliate)</a>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-name">Auvik</div>
+          <div class="tool-rating">★★★★☆ 4.3</div>
+        </div>
+        <span class="tool-verdict verdict-good">Great for Network Visibility</span>
+        <div class="tool-desc">Automatic network topology mapping that actually works. Huge time-saver when onboarding new clients or troubleshooting mystery network issues. Pricey but worth it at scale.</div>
+        <a href="https://www.auvik.com" target="_blank" rel="noopener" class="tool-affiliate-link">See Auvik Demo → (affiliate)</a>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-name">Ubiquiti UniFi</div>
+          <div class="tool-rating">★★★★☆ 4.5</div>
+        </div>
+        <span class="tool-verdict verdict-best">Best Value Networking</span>
+        <div class="tool-desc">Enterprise-grade network hardware at SMB prices. The UniFi controller is free, hardware is solid, and once you learn it, you'll never go back to consumer routers for client work.</div>
+        <a href="https://ui.com" target="_blank" rel="noopener" class="tool-affiliate-link">Shop UniFi → (affiliate)</a>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-name">Keeper Security</div>
+          <div class="tool-rating">★★★★☆ 4.4</div>
+        </div>
+        <span class="tool-verdict verdict-good">Best Password Manager for Teams</span>
+        <div class="tool-desc">The enterprise password manager that actually gets adopted by staff. Solid admin controls, audit logs, and it integrates cleanly with AD. Much better compliance story than LastPass post-breach.</div>
+        <a href="https://www.keepersecurity.com" target="_blank" rel="noopener" class="tool-affiliate-link">Try Keeper → (affiliate)</a>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-name">Pulseway</div>
+          <div class="tool-rating">★★★☆☆ 3.5</div>
+        </div>
+        <span class="tool-verdict verdict-skip">Skip for Multi-Site</span>
+        <div class="tool-desc">Good for solo admins who want mobile-first management. But if you're managing 10+ clients with any complexity, you'll hit its limits fast. The mobile app is genuinely excellent though.</div>
+        <a href="https://www.pulseway.com" target="_blank" rel="noopener" class="tool-affiliate-link">See Pulseway → (affiliate)</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="section" id="newsletter">
+    <div class="newsletter-section">
+      <h2>The SysEdge Weekly</h2>
+      <p>One IT insight every Tuesday. Tool reviews, security alerts, and field-tested tips — no filler, no upsells. Join 2,400+ IT pros.</p>
+      <form class="newsletter-form" onsubmit="handleSubscribe(event)">
+        <input type="email" placeholder="your@email.com" required id="email-input">
+        <button type="submit">Subscribe Free</button>
+      </form>
+      <p class="newsletter-note">No spam. Unsubscribe anytime. Your email stays private.</p>
+      <p id="subscribe-msg" style="display:none; margin-top:1rem; color:var(--success); font-weight:500;">✓ You're in! Check your inbox.</p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="about-strip">
+      <div class="about-avatar">JT</div>
+      <div class="about-text">
+        <h3>Jason Taylor — Author & IT Veteran</h3>
+        <p>10+ years across MSP, enterprise, healthcare, and data center environments. I've built networks from scratch, recovered from ransomware, managed 50+ sites simultaneously, and debugged more 3am alerts than I care to count. This blog exists because the best IT advice I ever got came from other practitioners — not vendors.</p>
+        <div class="about-creds">
+          <span class="cred-pill">MSP / ConnectWise</span>
+          <span class="cred-pill">CMMC / NIST 800-171</span>
+          <span class="cred-pill">Healthcare IT</span>
+          <span class="cred-pill">Data Center Ops</span>
+          <span class="cred-pill">NOC</span>
+          <span class="cred-pill">Network Engineering</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /home-content -->
+
+<!-- ═══════════════════════════════════════ ARTICLES ═══════════════════════════════════════ -->
+
+<!-- RANSOMWARE ARTICLE -->
+<div class="article-content" id="article-ransomware">
+  <div class="article-header">
+    <a class="back-link" onclick="showHome()">← Back to all articles</a>
+    <span class="post-tag tag-security">Cybersecurity</span>
+    <div class="post-title" style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin:1rem 0 0.5rem;line-height:1.2;">How We Recovered From Ransomware in 48 Hours — Without Paying the Ransom</div>
+    <div class="post-meta" style="margin-top:1rem;">Jason Taylor &nbsp;•&nbsp; June 2025 &nbsp;•&nbsp; 12 min read</div>
+  </div>
+  <div class="article-body">
+    <p>It was 2:17 PM on a Tuesday when the help desk tickets started flooding in. "I can't open any files." "My desktop looks different." "There's a message on my screen asking for Bitcoin."</p>
+    <p>We had been hit by ransomware. And by the time the first ticket came in, it had already been running for an estimated 90 minutes.</p>
+    <p>This is the story of how we recovered completely — no ransom paid, full operations restored in 48 hours — and the lessons that every IT pro needs to hear before it happens to them.</p>
+
+    <h2>The First 30 Minutes: Containment</h2>
+    <p>The single most important thing you do in a ransomware event is <strong>stop the bleeding</strong>. Ransomware spreads laterally. Every minute it runs, more files are encrypted.</p>
+    <p>Our immediate steps:</p>
+    <ul>
+      <li>Pulled network cables on any machine showing infection symptoms</li>
+      <li>Disabled the affected AD accounts to stop credential reuse</li>
+      <li>Took snapshots of any unaffected VMs before the spread could reach them</li>
+      <li>Called our cyber insurance carrier — this is step one that most people skip</li>
+    </ul>
+    <div class="callout">💡 If you remember nothing else from this article: pull the network cable first, ask questions second. A disconnected machine can't spread ransomware. An online machine can.</div>
+
+    <h2>What Saved Us: Immutable Backups</h2>
+    <p>The reason we recovered without paying was simple: our Veeam backups were stored in an immutable S3-compatible repository. The ransomware couldn't touch them because they were write-once by design.</p>
+    <p>Many organizations think they have backups. What they actually have is a shared network drive that the ransomware encrypted along with everything else.</p>
+    <div class="affiliate-box">
+      <div class="affiliate-box-text">
+        <strong>Veeam Backup & Replication</strong>
+        <span>The tool that saved this recovery. Immutable backups, instant VM recovery, and a free Community Edition.</span>
+      </div>
+      <a href="https://www.veeam.com" target="_blank" rel="noopener" class="affiliate-box-btn">Try Veeam Free →</a>
+    </div>
+
+    <h2>The Recovery Timeline</h2>
+    <p><strong>Hour 1–3:</strong> Containment, insurance call, forensic snapshot of encrypted machines. Identified Patient Zero (a phishing email opened by an accounting employee).</p>
+    <p><strong>Hour 3–8:</strong> Began VM restoration from immutable backups. Priority order: domain controllers first, then file servers, then workstations.</p>
+    <p><strong>Hour 8–16:</strong> Restored 80% of critical systems. Rebuilt affected workstations from golden image rather than trying to clean them.</p>
+    <p><strong>Hour 16–36:</strong> Restored remaining systems, validated data integrity, re-enabled user accounts with forced password resets and MFA enrollment.</p>
+    <p><strong>Hour 36–48:</strong> Full operations restored. Post-incident documentation and reporting to cyber insurance.</p>
+
+    <h2>The Three Things That Would Have Made It Worse</h2>
+    <ul>
+      <li><strong>Backups on the same network with no air gap.</strong> We almost made this mistake six months earlier. An audit caught it.</li>
+      <li><strong>No documented recovery runbook.</strong> At 3am you cannot afford to be figuring out your recovery process. It needs to be written down.</li>
+      <li><strong>SMS-based MFA.</strong> The attacker got in via compromised credentials. Hardware MFA or an authenticator app would have stopped it cold.</li>
+    </ul>
+
+    <h2>What to Put in Place Before It Happens to You</h2>
+    <ol>
+      <li>Immutable backups — Veeam with object lock, or a dedicated backup appliance with air-gap capability</li>
+      <li>Hardware MFA or TOTP authenticator apps — no SMS</li>
+      <li>Documented incident response runbook — who to call, in what order, what to do</li>
+      <li>Cyber liability insurance — it pays for forensics, notification, and legal fees</li>
+      <li>EDR on every endpoint — not just AV</li>
+    </ol>
+
+    <div class="callout">The $40/month we spent on immutable cloud backup saved us from a $150,000+ ransom demand. The ROI math on backup is not complicated.</div>
+
+    <p>If you have questions about your organization's ransomware readiness, drop them in the newsletter. I answer every email.</p>
+  </div>
+</div>
+
+<!-- CMMC ARTICLE -->
+<div class="article-content" id="article-cmmc">
+  <div class="article-header">
+    <a class="back-link" onclick="showHome()">← Back to all articles</a>
+    <span class="post-tag tag-compliance">Compliance</span>
+    <div class="post-title" style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin:1rem 0 0.5rem;line-height:1.2;">CMMC 2.0 for Small IT Teams: What You Actually Need to Do</div>
+    <div class="post-meta" style="margin-top:1rem;">Jason Taylor &nbsp;•&nbsp; May 2025 &nbsp;•&nbsp; 9 min read</div>
+  </div>
+  <div class="article-body">
+    <p>If your organization works with the Department of Defense — or supports a contractor that does — CMMC 2.0 is no longer optional. And yet most of the guidance out there was written for compliance consultants charging $300/hour, not the IT admin who has to actually implement it.</p>
+    <p>This guide is for the practitioners. Here's what CMMC 2.0 actually requires, in plain English.</p>
+
+    <h2>The Three Levels (And Which One Applies to You)</h2>
+    <p><strong>Level 1 (Foundational):</strong> 17 basic practices. Applies if you handle Federal Contract Information (FCI). This is the baseline — things like using antivirus, limiting physical access, and maintaining clean user accounts. Most already-decent IT shops are 80% there.</p>
+    <p><strong>Level 2 (Advanced):</strong> 110 practices aligned with NIST SP 800-171. Required if you handle Controlled Unclassified Information (CUI). This is where most organizations need real work.</p>
+    <p><strong>Level 3 (Expert):</strong> Based on NIST SP 800-172. Only for the most sensitive DoD programs. If you're Level 3, you already know it.</p>
+
+    <h2>The 5 Level 1 Controls Most Teams Are Missing</h2>
+    <ul>
+      <li>Documented access control policy (not just practice — written down)</li>
+      <li>Sanitization procedure for media disposal (that old hard drive in the closet is a liability)</li>
+      <li>Malicious code protection on all endpoints and email gateways</li>
+      <li>A process for scanning external files and media before use</li>
+      <li>Physical access controls with visitor logs</li>
+    </ul>
+
+    <h2>Where Level 2 Gets Hard</h2>
+    <p>The jump from Level 1 to Level 2 is significant. The 110 controls in NIST 800-171 require things most SMBs haven't formalized: system security plans (SSPs), audit log management, incident response procedures, and configuration management.</p>
+    <div class="callout">💡 Start with a System Security Plan (SSP). It's the single document that maps every NIST 800-171 control to how your organization meets it. Without an SSP, you can't prove compliance even if you're doing everything right.</div>
+
+    <div class="affiliate-box">
+      <div class="affiliate-box-text">
+        <strong>CMMC Policy Templates (Digital Download)</strong>
+        <span>Pre-built SSP, policy templates, and control mapping documents. Reviewed by an IT pro, not a compliance consultant.</span>
+      </div>
+      <a href="#newsletter" class="affiliate-box-btn">Get the Templates →</a>
+    </div>
+
+    <h2>Tools That Help With CMMC 2.0</h2>
+    <p>You'll need solid answers for: identity management, audit logging, endpoint protection, vulnerability scanning, and media protection. Here's what I recommend at the SMB/small contractor scale:</p>
+    <ul>
+      <li><strong>Identity:</strong> Azure AD (now Entra ID) with MFA enforced — maps cleanly to multiple controls</li>
+      <li><strong>Endpoint:</strong> Microsoft Defender for Business or CrowdStrike Falcon Go</li>
+      <li><strong>Audit logging:</strong> A SIEM — even a basic one. Datto EDR has a solid SMB option.</li>
+      <li><strong>Vulnerability scanning:</strong> Tenable.io or Qualys (both have SMB tiers)</li>
+    </ul>
+    <p>CMMC is achievable for small teams. It requires documentation discipline more than expensive tooling. Start with your SSP, map your current controls honestly, and work the gap list systematically.</p>
+  </div>
+</div>
+
+<!-- HOME LAB ARTICLE -->
+<div class="article-content" id="article-homelab">
+  <div class="article-header">
+    <a class="back-link" onclick="showHome()">← Back to all articles</a>
+    <span class="post-tag tag-networking">Networking</span>
+    <div class="post-title" style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin:1rem 0 0.5rem;line-height:1.2;">Build a Home Lab for Under $300: The Setup Every IT Pro Should Have</div>
+    <div class="post-meta" style="margin-top:1rem;">Jason Taylor &nbsp;•&nbsp; March 2025 &nbsp;•&nbsp; 14 min read</div>
+  </div>
+  <div class="article-body">
+    <p>The fastest way to level up your IT career isn't certifications. It's building things, breaking them, and fixing them — in an environment where you're not terrified of impacting production.</p>
+    <p>That's what a home lab gives you. And you don't need a rack of enterprise gear to do it right.</p>
+
+    <h2>The $300 Shopping List</h2>
+    <ul>
+      <li><strong>Mini PC (Beelink SER5 or similar) — ~$180:</strong> AMD Ryzen 5, 16GB RAM, 500GB NVMe. More than enough to run 4–6 VMs simultaneously with Proxmox.</li>
+      <li><strong>Managed switch — ~$45:</strong> TP-Link TL-SG108E. 8-port, VLAN capable, and dead simple to configure.</li>
+      <li><strong>Cables, USB drive for install — ~$20:</strong> Nothing exotic needed.</li>
+      <li><strong>Cloud storage for backups — ~$5/mo:</strong> Backblaze B2. Dirt cheap and S3-compatible.</li>
+    </ul>
+
+    <h2>The Software Stack (All Free)</h2>
+    <ul>
+      <li><strong>Proxmox VE</strong> — type-1 hypervisor, excellent UI, handles both VMs and containers</li>
+      <li><strong>pfSense</strong> — enterprise-grade firewall as a VM. Learn the same concepts used in real deployments.</li>
+      <li><strong>Windows Server Evaluation</strong> — free 180-day evaluation licenses from Microsoft. Build your AD domain.</li>
+      <li><strong>Veeam Community Edition</strong> — free backup for up to 10 VMs. Use it to practice your backup/restore workflow.</li>
+      <li><strong>Kali Linux</strong> — practice security scanning on your own network, legally.</li>
+    </ul>
+
+    <div class="callout">💡 The Proxmox + pfSense combination alone is worth the cost of the whole setup. You'll understand networking concepts at a level that no course can teach you.</div>
+
+    <h2>What to Build First</h2>
+    <ol>
+      <li>Install Proxmox on the mini PC</li>
+      <li>Deploy pfSense as a VM — configure WAN/LAN, set up VLANs on your managed switch</li>
+      <li>Stand up a Windows Server VM — install AD DS, promote to domain controller</li>
+      <li>Join a Windows 10/11 VM to the domain — create GPOs, practice AD administration</li>
+      <li>Deploy Veeam, set up backup jobs to Backblaze B2 — then practice restoring</li>
+    </ol>
+
+    <div class="affiliate-box">
+      <div class="affiliate-box-text">
+        <strong>Beelink SER5 Mini PC</strong>
+        <span>The hardware I recommend for a home lab. Quiet, energy-efficient, and powerful enough for serious work.</span>
+      </div>
+      <a href="https://www.amazon.com" target="_blank" rel="noopener" class="affiliate-box-btn">Check Price on Amazon →</a>
+    </div>
+
+    <h2>What You'll Learn That Certifications Won't Teach You</h2>
+    <p>Running a real (if small) network teaches you things no exam can: why DNS is always the answer, how AD replication actually works, what a misconfigured VLAN looks like in practice, and the real difference between a backup and a tested, restorable backup.</p>
+    <p>Build the lab. Break things. Fix them. Repeat. Your next job interview will be noticeably different.</p>
+  </div>
+</div>
+
+<!-- STUBS for other articles -->
+<div class="article-content" id="article-rmm">
+  <div class="article-header">
+    <a class="back-link" onclick="showHome()">← Back to all articles</a>
+    <span class="post-tag tag-tools">Tool Review</span>
+    <div class="post-title" style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin:1rem 0 0.5rem;line-height:1.2;">NinjaRMM vs. ConnectWise Automate: An MSP's Honest Take After Using Both</div>
+    <div class="post-meta" style="margin-top:1rem;">Jason Taylor &nbsp;•&nbsp; April 2025 &nbsp;•&nbsp; 11 min read</div>
+  </div>
+  <div class="article-body">
+    <p>Full article coming soon — subscribe to the newsletter to be notified when it publishes.</p>
+    <div class="newsletter-section" style="margin-top:2rem;">
+      <h2>Get Notified</h2>
+      <p>Subscribe to SysEdge Weekly and you'll get this article the moment it's live.</p>
+      <form class="newsletter-form" onsubmit="handleSubscribe(event)">
+        <input type="email" placeholder="your@email.com" required>
+        <button type="submit">Notify Me</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="article-content" id="article-mfa">
+  <div class="article-header">
+    <a class="back-link" onclick="showHome()">← Back to all articles</a>
+    <span class="post-tag tag-security">Cybersecurity</span>
+    <div class="post-title" style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin:1rem 0 0.5rem;line-height:1.2;">MFA Is Not Enough: Why SMS-Based Two-Factor Is Getting Your Clients Hacked</div>
+    <div class="post-meta" style="margin-top:1rem;">Jason Taylor &nbsp;•&nbsp; March 2025 &nbsp;•&nbsp; 7 min read</div>
+  </div>
+  <div class="article-body"><p>Full article coming soon — subscribe to the newsletter to be notified.</p></div>
+</div>
+
+<div class="article-content" id="article-backup">
+  <div class="article-header">
+    <a class="back-link" onclick="showHome()">← Back to all articles</a>
+    <span class="post-tag tag-msp">MSP Tips</span>
+    <div class="post-title" style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin:1rem 0 0.5rem;line-height:1.2;">The 3-2-1-1 Backup Rule: Why Your Clients' Current Strategy Will Fail</div>
+    <div class="post-meta" style="margin-top:1rem;">Jason Taylor &nbsp;•&nbsp; February 2025 &nbsp;•&nbsp; 8 min read</div>
+  </div>
+  <div class="article-body"><p>Full article coming soon — subscribe to the newsletter to be notified.</p></div>
+</div>
+
+<div class="article-content" id="article-unifi">
+  <div class="article-header">
+    <a class="back-link" onclick="showHome()">← Back to all articles</a>
+    <span class="post-tag tag-networking">Networking</span>
+    <div class="post-title" style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin:1rem 0 0.5rem;line-height:1.2;">Ubiquiti UniFi for SMBs: A Realistic Setup Guide (With the Gotchas)</div>
+    <div class="post-meta" style="margin-top:1rem;">Jason Taylor &nbsp;•&nbsp; January 2025 &nbsp;•&nbsp; 16 min read</div>
+  </div>
+  <div class="article-body"><p>Full article coming soon — subscribe to the newsletter to be notified.</p></div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Sys<span>Edge</span>.io</div>
+      <p>Real-world IT advice from a 10+ year veteran. No filler, no vendor bias — just what actually works in production.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Content</h4>
+      <ul>
+        <li><a href="#articles" onclick="showHome()">All Articles</a></li>
+        <li><a href="#tools" onclick="showHome()">Tool Reviews</a></li>
+        <li><a href="#categories" onclick="showHome()">Topics</a></li>
+        <li><a href="#newsletter" onclick="showHome()">Newsletter</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Topics</h4>
+      <ul>
+        <li><a href="#articles" onclick="showHome()">Cybersecurity</a></li>
+        <li><a href="#articles" onclick="showHome()">MSP Tips</a></li>
+        <li><a href="#articles" onclick="showHome()">Compliance</a></li>
+        <li><a href="#articles" onclick="showHome()">Networking</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="affiliate-disclosure">
+    <strong>Affiliate Disclosure:</strong> SysEdge.io participates in affiliate marketing programs. Posts may contain affiliate links. When you click and purchase through these links, we may earn a small commission at no additional cost to you. This helps keep the site free and the content independent. We only recommend tools and products we have personally used or thoroughly evaluated.
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 SysEdge.io — All rights reserved</span>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Affiliate Disclosure</a>
+      <a href="#newsletter" onclick="showHome()">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function showArticle(id) {
+    document.getElementById('home-content').classList.add('hidden');
+    document.querySelectorAll('.article-content').forEach(el => el.classList.remove('active'));
+    const article = document.getElementById('article-' + id);
+    if (article) {
+      article.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  function showHome() {
+    document.getElementById('home-content').classList.remove('hidden');
+    document.querySelectorAll('.article-content').forEach(el => el.classList.remove('active'));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function handleSubscribe(e) {
+    e.preventDefault();
+    const msg = document.getElementById('subscribe-msg');
+    if (msg) { msg.style.display = 'block'; }
+    e.target.reset();
+  }
+</script>
+</body>
+</html>
